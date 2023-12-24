@@ -9,7 +9,9 @@ Building an Alexa skill that sends a mail with your resume from an S3 bucket  an
 
 # Code used to configure AWS Lambda : 
 import boto3
+
 import botocore
+
 import openai
 
 #Set up your AWS credentials for S3 and SES
