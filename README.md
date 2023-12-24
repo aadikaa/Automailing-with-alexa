@@ -12,19 +12,16 @@ import boto3
 import botocore
 import openai
 
-# Set up your AWS credentials for S3 and SES
+#Set up your AWS credentials for S3 and SES
 AWS_ACCESS_KEY_ID = "AKIAT2PGBCRBVOSEJAEB"
 AWS_SECRET_ACCESS_KEY = "P2IX3nunnnYVHSCLtPC9eZ1GprLSI4/VAX8f9RrW"
 AWS_REGION = "ap-south-1"
 S3_BUCKET_NAME = "my-resume2023"
-
-# Set up OpenAI API key
+#Set up OpenAI API key
 OPENAI_API_KEY = "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"
-
-# Initialize AWS SES client
+#Initialize AWS SES client
 ses_client = boto3.client('ses', region_name=AWS_REGION)
-
-# Initialize OpenAI API
+#Initialize OpenAI API
 openai.api_key = OPENAI_API_KEY
 def generate_cover_letter():
 
@@ -45,16 +42,16 @@ aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
  resume_object = s3.get_object(Bucket=S3_BUCKET_NAME, Key=Suraj - Resume.pdf)
  resume_data = resume_object['Body'].read()
  
- # Generate the cover letter
+ #Generate the cover letter
  cover_letter = generate_cover_letter()
  
- # Compose the email
+ #Compose the email
  subject = 'Job Application'
  sender = "suraj.singhh9968@gmail.com"
  recipient = "surajsingh24@icloud.com"
  email_body = f"Dear Hiring Manager,\n\n{cover_letter}\n\nSincerely,\nYour Name"
  
- # Send the email using SES
+ #Send the email using SES
  ses_client.send_email(
  Source=sender,
  Destination={'ToAddresses': [recipient]},
